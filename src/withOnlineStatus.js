@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import OnlineStatusMock from "./OnlineStatusMock";
 
@@ -36,6 +36,10 @@ const withOnlineStatus = (WrappedComponent) => (props) => {
 
     setIsOnline(newOnlineStatus);
   };
+
+  useEffect(() => {
+    return () => clearTimeout(refTimer.current);
+  }, []);
 
   return (
     <>
